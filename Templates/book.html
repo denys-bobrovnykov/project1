@@ -1,0 +1,74 @@
+{% extends "layout.html" %}
+
+{% block title %}
+{{ isbn }}
+{% endblock %}
+
+{% block body %}
+<h4>You logged in as {{ user }}</h4>
+    <form action="{{ url_for('logout') }}"><button type="submit" class="btn btn-primary bg-secondary text-white" value="Submit">Logout</button> or<a href="/" class="text-primary"> Search again</a>
+    </form>
+<div class="container">
+  <div class="row">
+    <div class="col">
+        <br>
+        Title:
+        <h1>"{{ books.title }}"</h1>
+        Author:<h2> {{books.author}}</h2>
+        Year:<h2> {{books.year}}</h2>
+        Isbn:<h2> {{books.isbn}}</h2>
+        <form action="{{url_for('result', isbn=books.isbn)}}" method="post">
+            <div class="form-group">
+                    <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="rate" id="inlineRadio1" value="1">
+                    <label class="form-check-label" for="inlineRadio1">1</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="rate" id="inlineRadio2" value="2">
+                    <label class="form-check-label" for="inlineRadio2">2</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="rate" id="inlineRadio3" value="3">
+                    <label class="form-check-label" for="inlineRadio3">3</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="rate" id="inlineRadio4" value="4">
+                    <label class="form-check-label" for="inlineRadio4">4</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="rate" id="inlineRadio5" value="5">
+                    <label class="form-check-label" for="inlineRadio5">5</label>
+                    </div>
+                        <label for="textarea">Your review</label>
+                        <textarea class="form-control" name="review" id="textarea" rows="3"></textarea>
+                 <p>{{ msg }}</p>
+                <button type="submit" class="btn btn-primary" value="Submit">Submit</button>
+            </div>
+        </form>
+        <br>
+    </div>
+    <div class="col">
+    <div class="container" style="background-color: lightblue">
+        <h5 class=''>Goodread.com rating:</h5>
+        <h3>{{ average_rating }}</h3>
+        <h5>AND reviews received: </h5>
+        <h3>{{ count }}</h3>
+    </div>
+        <br>
+        <h2>My site reviews</h2>
+            <div class="card" style="width: 18rem;">
+                {% for review in reviews %}
+                    <div class="card bg-light lb-3" style="max-width: 18rem;">
+                        <div class="card-header">@{{review.user_name}}</div>
+                            <div class="card-body">
+                                <h5 class="card-title">Rated {{review.rate}}</h5>
+                                <p class="card-text">{{ review.review }}</p>
+                            </div>
+                    </div>
+                 {% endfor %}
+            </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

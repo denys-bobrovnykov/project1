@@ -1,0 +1,20 @@
+{% extends "layout.html" %}
+
+{% block title %}
+   Book search
+{% endblock %}
+{% block body %}
+<h4>You logged in as {{ user }}</h4>
+<h1>Book search</h1>
+<form action="search" method="POST">
+    <div class="form-group">
+    <label for="search">Enter ISBN, author or book title</label>
+    <input type="text" class="form-control" id="search" name="text" placeholder="Enter text" required>
+    </div>
+  <button type="submit" class="btn btn-primary" value="Submit">Submit</button>
+</form>
+<p>{{ msg }}</p>
+<form action="{{ url_for('logout') }}">
+    <button type="submit" class="btn btn-primary bg-secondary text-white" value="Submit">Logout</button>
+</form>
+{% endblock %}

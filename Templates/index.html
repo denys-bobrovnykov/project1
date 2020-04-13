@@ -1,0 +1,27 @@
+{% extends "layout.html" %}
+
+{% block title %}
+   Login
+{% endblock %}
+
+{% block body %}
+      <h1>Welcome to my book review website!</h1>
+      <br>
+      <h1>Login</h1>
+<form autocomplete="off" action="{{url_for('login')}}" method="post">
+  <div class="form-group">
+    <input  autocomplete="off" type="text" class="form-control" id="username" name="user_name" pattern=".{4,8}" placeholder="User name" required>
+  </div>
+  <div class="form-group">
+    <input  autocomplete="off" type="password" class="form-control" id="password" name="user_password"  pattern=".{4,8}" placeholder="Password" required>
+  </div>
+  <p>{{ msg }}</p>
+  <button type="submit" class="btn btn-primary" value="Login">Login</button>
+</form>
+Or<a href="{{ url_for('register') }}"> Register</a>
+<br>
+<br>
+For API request please type .../book/api/'isbn' in browser,<br>
+where isbn is requested book isbn number.
+
+{% endblock %}

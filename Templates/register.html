@@ -1,0 +1,29 @@
+{% extends "layout.html" %}
+
+{% block title %}
+   Register
+{% endblock %}
+
+{% block body %}
+      <h1>Register</h1>
+<div>
+  <a href="{{ url_for('login') }}">Login</a>
+</div>
+<form action="{{url_for('register')}}" method="post" autocomplete="off">
+  <div class="form-group">
+    <label for="username">Enter user name(4-8 characters)</label>
+    <input autocomplete="off" type="text" class="form-control" id="username" name="user_name" pattern=".{4,8}"  required>
+  </div>
+  <div class="form-group">
+    <label for="password">Enter password(4-8 characters)</label>
+    <input autocomplete="off" type="password" class="form-control" id="password" name="user_password" pattern=".{4,8}"  required>
+  </div>
+  <div class="form-group">
+    <label for="email">Enter email</label>
+    <input autocomplete="off" type="text" class="form-control" id="email" name="email" required>
+  </div>
+  <p>{{ msg }}</p>
+  <button type="submit" class="btn btn-primary" value="Register">Register</button>
+</form>
+
+{% endblock %}

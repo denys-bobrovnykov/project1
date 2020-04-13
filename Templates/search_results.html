@@ -1,0 +1,20 @@
+{% extends "layout.html" %}
+
+{% block title %}
+   Search results
+{% endblock %}
+{% block body %}
+<h4>You logged in as {{ user }}</h4>
+    <form action="{{ url_for('logout') }}">
+       <button type="submit" class="btn btn-primary bg-secondary text-white" value="Submit">Logout</button> or<a href="/" class="text-primary"> Search again</a>
+    </form>
+<h1>Search results</h1>
+<div class="container">
+   {% for book in books %}
+             <li><a class="text-info" href="/book/{{ book.isbn }}">{{ book.isbn }}, "{{book.title}}",by {{ book.author }} in {{ book.year }}</a></li>
+    {% endfor %}
+        </ul>
+    </div>
+  </div>
+</div>
+{% endblock %}
